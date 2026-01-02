@@ -1,0 +1,7 @@
+﻿services:
+  caixaapi:
+    image: caixaapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+
