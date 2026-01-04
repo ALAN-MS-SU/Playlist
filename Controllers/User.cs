@@ -40,5 +40,33 @@ public class UserController(Context context) : ControllerBase
 
         return BadRequest("Erro ao cadastrar usuário");
     }
+
+    [HttpPut]
+    public async Task<IActionResult> PutUser([FromBody] UpdateUser data)
+    {
+        var user = await Context.Users.FindAsync(data.ID);
+        if (user == null)
+        {
+            return Unauthorized("Usuaŕio não existe");
+        }
+        var FindUser = await Context.Users.FirstOrDefaultAsync(u => u.Email == data.Email);
+        if (FindUser != null)
+        {
+            return Unauthorized("Email já está sendo usado.");
+        }
+
+        if (data.Name != null)
+        {
+            user.Name = data.Name;
+        }
+        if (data.Email != null)
+        {
+            user.Email = data.Email;
+        }
+
+        await Context.SaveChangesAsync();
+        return NoContent();
+
+    }
     
 }
