@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-
-namespace CaixaAPI.Model.User;
 using System.ComponentModel.DataAnnotations;
+namespace CaixaAPI.Model.User;
+
 [Table("Users")]
 [Index(nameof(Email), IsUnique =  true)]
 public class User 
@@ -27,6 +27,8 @@ public class User
     
     [Column("Password")]
     public string Password { get; set; }
+    
+    public User(){}
     protected User(int ID, string Email,string Name, string Password)
     {
         this.ID = ID;

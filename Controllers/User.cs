@@ -1,9 +1,7 @@
-using System.Net;
-using CaixaAPI.Model.User;
 
+using CaixaAPI.Model.User;
 namespace CaixaAPI.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using CaixaAPI.Model;
 using CaixaAPI.DB;
 using Microsoft.EntityFrameworkCore;
 [ApiController]
