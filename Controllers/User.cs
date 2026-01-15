@@ -3,21 +3,23 @@ using CaixaAPI.Model.User;
 namespace CaixaAPI.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using CaixaAPI.DB;
+using CaixaAPI.Model.JWT;
 using Microsoft.EntityFrameworkCore;
 [ApiController]
 [Route("/User")]
-public class UserController(Context context) : ControllerBase
+public class UserController(Context context,JWT jwt) : ControllerBase
 {
     private readonly Context Context = context;
-   
-    [HttpGet]
-    public async Task<IActionResult> Get()
+    private readonly JWT Jwt = jwt;
+    [HttpGet("{ID}")]
+    public async Task<IActionResult> Get(int ID)
     {
-        var Users = await Context.Users.Select(user => new{user.ID,user.Email,user.Name}).ToListAsync();
-       
-
-        return Ok(Users);
-
+        var Token = Jwt.CreateJWT(ID);
+        if (Token == null)
+        {
+            return Unauthorized("T");
+        }
+        return Ok(Token);
     }
 
     [HttpPost]
