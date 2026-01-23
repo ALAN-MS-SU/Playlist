@@ -20,27 +20,27 @@ public class JWT
     {
         Configuration = configuration;
         var expires = DateTime.UtcNow.AddMinutes(
-            double.Parse(Configuration["Jwt:Expires"]!)
+            double.Parse(Configuration["JWT:Expires"]!)
         );
         var Key = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]!)
+            Encoding.UTF8.GetBytes(Configuration["JWT:Key"]!)
         );
         Config = (
-            Audience: Configuration["Jwt:Audience"]!,
-            Issuer: Configuration["Jwt:Issuer"]!,
+            Audience: Configuration["JWT:Audience"]!,
+            Issuer: Configuration["JWT:Issuer"]!,
             NotBefore: DateTime.UtcNow,
             Expires: expires,
             Credentials: new SigningCredentials(Key, SecurityAlgorithms.HmacSha256)
         );
     }
 
-    protected bool CheckConfig()
+    private bool CheckConfig()
     {
        return this.Config switch
         {
-            { Audience: null or "" }          => throw new InvalidOperationException("Invalid Audience"),
-            { Issuer: null or "" }            => throw new InvalidOperationException("Invalid Issuer"),
-            { Credentials: null }             => throw new InvalidOperationException("Invalid Credentials"),
+            { Audience: null or "" } => throw new InvalidOperationException("Invalid Audience"),
+            { Issuer: null or "" } => throw new InvalidOperationException("Invalid Issuer"),
+            { Credentials: null } => throw new InvalidOperationException("Invalid Credentials"),
             _ => true
         };
         

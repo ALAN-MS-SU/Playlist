@@ -28,14 +28,18 @@ public class User
     [Column("Password")]
     public string Password { get; set; }
     
+    public string? Secret { get; set; }
+    
     public User(){}
-    protected User(int ID, string Email,string Name, string Password)
+    protected User(int ID, string Email,string Name, string Password, string Secret)
     {
         this.ID = ID;
         this.Name = Name;
         this.Email = Email;
         this.Password = Password;
+        this.Secret = Secret;
     }
+    
 }
 
 public class UpdateUser 

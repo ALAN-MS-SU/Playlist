@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using CaixaAPI.DB;
 using CaixaAPI.Model.JWT;
-using StackExchange.Redis;
+using CaixaAPI.Model.TOPT;
+//using StackExchange.Redis;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -9,13 +10,19 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.PropertyNamingPolicy = null;
 });
 
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration.GetConnectionString("Redis");
-    options.InstanceName = "";
-});
+builder.Services.AddDataProtection();
+// builder.Services.AddStackExchangeRedisCache(options =>
+// {
+//  
+//     options.ConfigurationOptions = ConfigurationOptions.Parse(
+//         builder.Configuration.GetConnectionString("Redis")
+//         ??throw new InvalidOperationException("Connection string 'Redis' not found.")
+//         );
+//     options.InstanceName = "PlaylistAPI";
+// });
 
 builder.Services.AddScoped<JWT>();
+builder.Services.AddScoped<TOPT>();
 
 builder.Services.AddDbContext<Context>(options =>
     options.UseNpgsql(

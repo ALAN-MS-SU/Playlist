@@ -1,27 +1,52 @@
-
-using CaixaAPI.Model.User;
-namespace CaixaAPI.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using CaixaAPI.DB;
 using CaixaAPI.Model.JWT;
 using Microsoft.EntityFrameworkCore;
+//using Microsoft.Extensions.Caching.Distributed;
+using CaixaAPI.Model.User;
+using CaixaAPI.Model.TOPT;
+using QRCoder;
+namespace CaixaAPI.Controllers;
+
 [ApiController]
 [Route("/User")]
-public class UserController(Context context,JWT jwt) : ControllerBase
+public class UserController(Context context,JWT jwt,
+    TOPT topt
+    //IDistributedCache redis
+    ) : ControllerBase
 {
     private readonly Context Context = context;
-    private readonly JWT Jwt = jwt;
-    [HttpGet("{ID}")]
-    public async Task<IActionResult> Get(int ID)
-    {
-        var Token = Jwt.CreateJWT(ID);
-        if (Token == null)
-        {
-            return Unauthorized("T");
-        }
-        return Ok(Token);
-    }
 
+    private readonly JWT Jwt = jwt;
+    
+    private readonly TOPT Topt = topt;
+    //private readonly IDistributedCache Redis = redis;
+    [HttpGet("{Email}")]
+    public async Task<IActionResult> Get(string Email)
+    {
+        var User = await Context.Users.FirstOrDefaultAsync((user) =>  user.Email == Email );
+        if (User == null) return BadRequest("Not Found");
+        return Ok("Found");
+    }
+    [HttpPost("{Email}")]
+    public async Task<IActionResult> TwoFactor(string Email)
+    {
+        var User = await Context.Users.FirstOrDefaultAsync((user) =>  user.Email == Email );
+        if (User == null) return BadRequest("Not Found");
+        if (User.Secret == null)
+        {
+            var Secrets = Topt.CreateSecret();
+            User.Secret = Secrets.Encrypt;
+            await this.Context.SaveChangesAsync();
+        }
+        var QRGenerator = new QRCodeGenerator();
+        var QRData = QRGenerator.CreateQrCode
+        ($"otpauth://totp/MinhaAPI:{Email}?secret={User.Secret}&issuer={this.Topt.Issuer}"
+            , QRCodeGenerator.ECCLevel.Q);
+        var QRCode = new PngByteQRCode(QRData).GetGraphic(20);
+        return File(QRCode,"image/png");
+
+    }
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] User user)
     {
