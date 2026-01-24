@@ -8,7 +8,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="" />
+    <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/TOPT/TOPT.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,6 +167,8 @@
       <workItem from="1769131637184" duration="3760000" />
       <workItem from="1769135471897" duration="3243000" />
       <workItem from="1769179705736" duration="5150000" />
+      <workItem from="1769220156585" duration="627000" />
+      <workItem from="1769267623028" duration="6228000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />

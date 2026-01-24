@@ -4,14 +4,14 @@ using CaixaAPI.Model.JWT;
 using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Caching.Distributed;
 using CaixaAPI.Model.User;
-using CaixaAPI.Model.TOPT;
+using CaixaAPI.Model.TOTP;
 using QRCoder;
 namespace CaixaAPI.Controllers;
 
 [ApiController]
 [Route("/User")]
 public class UserController(Context context,JWT jwt,
-    TOPT topt
+    TOTP totp
     //IDistributedCache redis
     ) : ControllerBase
 {
@@ -19,7 +19,7 @@ public class UserController(Context context,JWT jwt,
 
     private readonly JWT Jwt = jwt;
     
-    private readonly TOPT Topt = topt;
+    private readonly TOTP Totp = totp;
     //private readonly IDistributedCache Redis = redis;
     [HttpGet("{Email}")]
     public async Task<IActionResult> Get(string Email)
@@ -35,18 +35,36 @@ public class UserController(Context context,JWT jwt,
         if (User == null) return BadRequest("Not Found");
         if (User.Secret == null)
         {
-            var Secrets = Topt.CreateSecret();
+            var Secrets = Totp.CreateSecret();
             User.Secret = Secrets.Encrypt;
             await this.Context.SaveChangesAsync();
         }
-        var QRGenerator = new QRCodeGenerator();
-        var QRData = QRGenerator.CreateQrCode
-        ($"otpauth://totp/MinhaAPI:{Email}?secret={User.Secret}&issuer={this.Topt.Issuer}"
-            , QRCodeGenerator.ECCLevel.Q);
-        var QRCode = new PngByteQRCode(QRData).GetGraphic(20);
+        var QRCode = this.Totp.GenerateQRCode(User.Email,User.Secret,this.Totp.Issuer);
         return File(QRCode,"image/png");
 
     }
+
+    [HttpPost("Login")]
+
+    public async Task<IActionResult> Login([FromBody] TOPTCode Body)
+    {
+        var User = await Context.Users.FirstOrDefaultAsync(u => u.Email == Body.Email);
+        if (User == null)
+        {
+           return Unauthorized("User Not Found.");
+        }
+        if (User.Secret == null)
+        {
+            return Forbid("Secret not found.");
+        }
+        var Valid = Totp.Valid(User.Secret, Body.Code);
+        if(Valid)
+          return NoContent();
+        return  Unauthorized("Invalid Code");
+
+
+    }
+    
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] User user)
     {

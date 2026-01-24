@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using CaixaAPI.DB;
 using CaixaAPI.Model.JWT;
-using CaixaAPI.Model.TOPT;
+using CaixaAPI.Model.TOTP;
 //using StackExchange.Redis;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +22,7 @@ builder.Services.AddDataProtection();
 // });
 
 builder.Services.AddScoped<JWT>();
-builder.Services.AddScoped<TOPT>();
+builder.Services.AddScoped<TOTP>();
 
 builder.Services.AddDbContext<Context>(options =>
     options.UseNpgsql(
