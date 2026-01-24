@@ -8,14 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Model/TOPT/TOPT.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CaixaAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CaixaAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/JWT/JWT.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/JWT/JWT.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/User/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/User/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-    </list>
+    <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,6 +161,7 @@
       <workItem from="1769046547838" duration="5000" />
       <workItem from="1769131637184" duration="3760000" />
       <workItem from="1769135471897" duration="3243000" />
+      <workItem from="1769179705736" duration="5150000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
