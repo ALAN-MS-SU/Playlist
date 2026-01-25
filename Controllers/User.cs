@@ -58,8 +58,14 @@ public class UserController(Context context,JWT jwt,
             return Forbid("Secret not found.");
         }
         var Valid = Totp.Valid(User.Secret, Body.Code);
-        if(Valid)
-          return NoContent();
+        if (Valid)
+        {
+            var JWT = Jwt.CreateJWT(User.ID);
+            
+            if(JWT == null)
+                return  Unauthorized("JWT Err");
+            return Ok(new {JWT});
+        }
         return  Unauthorized("Invalid Code");
 
 

@@ -11,8 +11,6 @@
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/TOPT/TOPT.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +27,6 @@
     <setting file="file://$PROJECT_DIR$/Controllers/User.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DB/DB.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/JWT/JWT.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/TOPT/TOPT.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/User/User.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -168,7 +165,8 @@
       <workItem from="1769135471897" duration="3243000" />
       <workItem from="1769179705736" duration="5150000" />
       <workItem from="1769220156585" duration="627000" />
-      <workItem from="1769267623028" duration="6228000" />
+      <workItem from="1769267623028" duration="6259000" />
+      <workItem from="1769302593337" duration="967000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -218,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768515594593</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add TOTP">
+      <option name="closed" value="true" />
+      <created>1769276563774</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1769276563775</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +240,8 @@
     <MESSAGE value="Add create Playlist" />
     <MESSAGE value="Add Get Playlist" />
     <MESSAGE value="add JWT" />
-    <option name="LAST_COMMIT_MESSAGE" value="add JWT" />
+    <MESSAGE value="Add TOTP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add TOTP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
