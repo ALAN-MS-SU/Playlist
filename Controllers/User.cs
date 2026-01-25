@@ -25,14 +25,14 @@ public class UserController(Context context,JWT jwt,
     public async Task<IActionResult> Get(string Email)
     {
         var User = await Context.Users.FirstOrDefaultAsync((user) =>  user.Email == Email );
-        if (User == null) return BadRequest("Not Found");
-        return Ok("Found");
+        if (User == null) return BadRequest("Not Found.");
+        return Ok("Found.");
     }
     [HttpPost("{Email}")]
     public async Task<IActionResult> TwoFactor(string Email)
     {
         var User = await Context.Users.FirstOrDefaultAsync((user) =>  user.Email == Email );
-        if (User == null) return BadRequest("Not Found");
+        if (User == null) return BadRequest("Not Found.");
         if (User.Secret == null)
         {
             var Secrets = Totp.CreateSecret();
@@ -63,10 +63,10 @@ public class UserController(Context context,JWT jwt,
             var JWT = Jwt.CreateJWT(User.ID);
             
             if(JWT == null)
-                return  Unauthorized("JWT Err");
+                return  Unauthorized("JWT Err.");
             return Ok(new {JWT});
         }
-        return  Unauthorized("Invalid Code");
+        return  Unauthorized("Invalid Code.");
 
 
     }

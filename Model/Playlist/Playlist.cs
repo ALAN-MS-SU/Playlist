@@ -37,10 +37,33 @@ public class CreatePlayList
 {
     public string Name { get; set; }
     public int User { get; set; }
-    
     public string Link { get; set; }
-    
-    public CreatePlayList(){}
+
+    public CreatePlayList(string Name, int User, string Link)
+    {
+        this.Name = Name;
+        this.User = User;
+        this.Link = Link;
+    }
     
 }
 
+public class UpdatePlayList
+{
+    public int ID { get; set; }
+    
+    public string Name { get; set; }
+}
+
+public class Item
+{
+    public int ID { get; set; }
+    
+    public string Link { get; set; }
+
+    public Item(int ID, string Link)
+    {
+        this.ID = ID;
+        this.Link = Link;
+    }
+}

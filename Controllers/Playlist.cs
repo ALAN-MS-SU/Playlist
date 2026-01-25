@@ -41,13 +41,48 @@ public class PlaylistController(Context context) : ControllerBase
             return Unauthorized("Usuaŕio não existe");
         }
         var ID = Context.Playlists.Select(p=>(int?)p.PlaylistID).Max()??1;
-        Console.WriteLine(ID.ToString());
-        await Context.Playlists.AddAsync(new Playlist{PlaylistID = ID,Name = playlist.Name, UserID = playlist.User, Link = playlist.Link});
+        await Context.Playlists.AddAsync(
+            new Playlist{PlaylistID = ID,Name = playlist.Name, UserID = playlist.User, Link = playlist.Link});
         int row = await Context.SaveChangesAsync();
         if (row > 0)
         {
             return StatusCode(201,"Playlist foi Criada");
         }
         return BadRequest("Erro ao criar playlist");
+    }
+
+    [HttpPost("Item")]
+    public async Task<IActionResult> AddItem([FromBody] Item Body)
+    {
+        var Playlist = await Context.Playlists.FirstOrDefaultAsync(playlist => playlist.PlaylistID == Body.ID);
+        if (Playlist == null)
+        {
+            return Unauthorized("Playlist not found.");
+        }
+        await Context.Playlists.AddAsync(
+            new Playlist{PlaylistID = Body.ID,Name = Playlist.Name, UserID = Playlist.UserID, Link =  Body.Link});
+        int row = await Context.SaveChangesAsync();
+        if(row > 0)
+            return StatusCode(201,"Item has been added.");
+        return BadRequest("Error when adding new item.");
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] UpdatePlayList Body)
+    {
+        var Playlists = Context.Playlists.Where(playlist => playlist.PlaylistID == Body.ID).ToList();
+        if (Playlists.Count < 1)
+        {
+            return Unauthorized("Playlist not found.");
+        }
+
+        foreach (Playlist playlist in Playlists)
+        {
+            playlist.Name = Body.Name;
+        }
+        int row = await Context.SaveChangesAsync();
+        if(row > 0)
+            return StatusCode(201,"Playlist has been updated.");
+        return BadRequest("Error when updating playlist.");
     }
 }

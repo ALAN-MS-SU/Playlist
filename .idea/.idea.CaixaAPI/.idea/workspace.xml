@@ -10,7 +10,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Playlist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Playlist.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Playlist/Playlist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Playlist/Playlist.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +168,7 @@
       <workItem from="1769179705736" duration="5150000" />
       <workItem from="1769220156585" duration="627000" />
       <workItem from="1769267623028" duration="6259000" />
-      <workItem from="1769302593337" duration="967000" />
+      <workItem from="1769302593337" duration="7092000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -224,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769276563775</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add return JWT">
+      <option name="closed" value="true" />
+      <created>1769303739526</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1769303739526</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +251,8 @@
     <MESSAGE value="Add Get Playlist" />
     <MESSAGE value="add JWT" />
     <MESSAGE value="Add TOTP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add TOTP" />
+    <MESSAGE value="Add return JWT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add return JWT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
