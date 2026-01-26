@@ -1,22 +1,17 @@
 using CaixaAPI.Model.Playlist;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using CaixaAPI.Model.User;
-namespace CaixaAPI.DB
+using Microsoft.EntityFrameworkCore;
+
+namespace CaixaAPI.DB;
+
+public class Context : DbContext
 {
-    public class Context : DbContext
+    public Context(DbContextOptions<Context> options)
+        : base(options)
     {
-     
- public Context(DbContextOptions<Context> options)
-            : base(options)
-        {
-        }
-        public DbSet<User> Users { get; set; }
-        
-        public DbSet<Playlist> Playlists { get; set; }
-
-       
-
-       
     }
+
+    public DbSet<User> Users { get; set; }
+
+    public DbSet<Playlist> Playlists { get; set; }
 }
