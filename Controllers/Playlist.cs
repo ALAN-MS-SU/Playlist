@@ -19,7 +19,8 @@ public class PlaylistController(Context context) : ControllerBase
             {
                 playlist.ID,
                 playlist.PlaylistID,
-                playlist.Name, User = playlist.User.Name,
+                playlist.Name, 
+                User = playlist.User.Name,
                 playlist.Link
             })
             .ToListAsync();
@@ -43,7 +44,7 @@ public class PlaylistController(Context context) : ControllerBase
                 ID = playlist.Key,
                 playlist.First().Name, User = playlist.First().User.Name
             }).ToListAsync();
-
+           
         return Ok(Playlists);
     }
 

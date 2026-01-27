@@ -4,8 +4,6 @@ using CaixaAPI.Model.TOTP;
 using CaixaAPI.Model.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.Caching.Distributed;
-
 namespace CaixaAPI.Controllers;
 
 [ApiController]
@@ -14,7 +12,6 @@ public class UserController(
     Context context,
     JWT jwt,
     TOTP totp
-    //IDistributedCache redis
 ) : ControllerBase
 {
     private readonly Context Context = context;
@@ -22,14 +19,14 @@ public class UserController(
     private readonly JWT Jwt = jwt;
 
     private readonly TOTP Totp = totp;
-
-    //private readonly IDistributedCache Redis = redis;
+    
     [HttpGet("{Email}")]
     public async Task<IActionResult> Get(string Email)
     {
         var User = await Context.Users.FirstOrDefaultAsync(user => user.Email == Email);
+        var Res= await Totp.Count(Email);
         if (User == null) return BadRequest("Not Found.");
-        return Ok("Found.");
+        return Ok(Res);
     }
 
     [HttpPost("{Email}")]
@@ -48,22 +45,23 @@ public class UserController(
         return File(QRCode, "image/png");
     }
 
-    [HttpPost("Login")]
-    public async Task<IActionResult> Login([FromBody] TOPTCode Body)
+    [HttpPost("2FA")]
+    public async Task<IActionResult> TwoFA([FromBody] TOPTCode Body)
     {
-        var User = await Context.Users.FirstOrDefaultAsync(u => u.Email == Body.Email);
+        var User = await Context.Users.FirstOrDefaultAsync(user => user.Email == Body.Email);
         if (User == null) return Unauthorized("User Not Found.");
         if (User.Secret == null) return Forbid("Secret not found.");
+        var Count = await Totp.Count(Body.Email);
+        if (Count >= 5) return StatusCode(403,"Limit exceeded.");
+        Totp.Attempt(Body.Email);
         var Valid = Totp.Valid(User.Secret, Body.Code);
         if (Valid)
         {
             var JWT = Jwt.CreateJWT(User.ID);
-
             if (JWT == null)
                 return Unauthorized("JWT Err.");
             return Ok(new { JWT });
         }
-
         return Unauthorized("Invalid Code.");
     }
 
