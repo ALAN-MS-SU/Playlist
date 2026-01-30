@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-
 namespace CaixaAPI.Model.User;
 
 [Table("Users")]
@@ -37,6 +36,13 @@ public class User
     [Required] [Column("Password")] public string Password { get; set; }
 
     public string? Secret { get; set; }
+}
+
+public class Credentials
+{
+    public string Email { get; set; }
+    public string Password { get; set; }
+    
 }
 
 public class UpdateUser

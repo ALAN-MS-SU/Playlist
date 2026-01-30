@@ -2,6 +2,8 @@ using CaixaAPI.DB;
 using CaixaAPI.Model.JWT;
 using CaixaAPI.Model.TOTP;
 using Microsoft.EntityFrameworkCore;
+using CaixaAPI.Middleware;
+using CaixaAPI.Model.Argon;
 using StackExchange.Redis;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +22,11 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(options =>
         Config.ClientName = "PlaylistAPI";
     return ConnectionMultiplexer.Connect(Config);
  });
-
+builder.Services.AddScoped<Argon>();
 builder.Services.AddScoped<JWT>();
 builder.Services.AddScoped<TOTP>();
-
+builder.Services.AddScoped<TFAccess>();
+builder.Services.AddScoped<SIAccess>();
 builder.Services.AddDbContext<Context>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("Postgres") ??
@@ -32,10 +35,20 @@ builder.Services.AddDbContext<Context>(options =>
 );
 
 builder.Services.AddOpenApi();
-
 var app = builder.Build();
-
-
+app.UseWhen(
+    context =>
+        !(
+            (context.Request.Path.StartsWithSegments("/User") && 
+             !context.Request.Path.StartsWithSegments("/User/Profile")) &&
+            (context.Request.Method == HttpMethods.Get ||
+             context.Request.Method == HttpMethods.Post) 
+        ) && !(context.Request.Path.StartsWithSegments("/Playlist") && context.Request.Method == HttpMethods.Get),
+    appBuilder =>
+    {
+        appBuilder.UseMiddleware<Auth>();
+    }
+);
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 app.MapControllers();
 app.UseHttpsRedirection();

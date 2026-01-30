@@ -12,31 +12,15 @@ public class TOTP
 
     private readonly IDataProtector Protector;
 
-    private readonly IDatabase Redis;
+   
 
-    private readonly string Prefix;
-    
-    private readonly int Timeout;
 
-    public TOTP(IConfiguration Configuration, IDataProtectionProvider Provider, IConnectionMultiplexer Redis)
+    public TOTP(IConfiguration Configuration, IDataProtectionProvider Provider)
     {
-        this.Protector = Provider.CreateProtector("TOPT-Encrypt");
-        this.Length = int.Parse(Configuration["TOPT:Length"]!);
-        this.Issuer = Configuration["TOPT:Issuer"]!;
-        this.Redis = Redis.GetDatabase();
-        this.Prefix = Configuration["TOPT:Prefix"]!;
-        this.Timeout = int.Parse(Configuration["TOPT:Timeout"]!);
-    }
-    public async Task<long> Count(string Email)
-    {
-        var Count = await this.Redis.ListLengthAsync($"{this.Prefix}-{Email}");
-        return Count;
-    }
-
-    public void Attempt(string Email)
-    {
-         this.Redis.ListRightPushAsync($"{this.Prefix}-{Email}", $"");
-         this.Redis.KeyExpireAsync($"{this.Prefix}-{Email}", TimeSpan.FromHours(this.Timeout));
+        this.Protector = Provider.CreateProtector("TOTP-Encrypt");
+        this.Length = int.Parse(Configuration["TOTP:Length"]!);
+        this.Issuer = Configuration["TOTP:Issuer"]!;
+        
     }
     public (string Secret, string Encrypt) CreateSecret()
     {
@@ -67,6 +51,68 @@ public class TOTP
         var TOTP = new Totp(Key);
 
         return TOTP.VerifyTotp(Code, out var Step, new VerificationWindow());
+    }
+}
+
+public class Access
+{
+        protected readonly IDatabase Redis;
+        protected readonly int Timeout;
+        public Access(IConfiguration Configuration,IConnectionMultiplexer Redis)
+        {
+            this.Redis = Redis.GetDatabase();
+            this.Timeout = int.Parse(Configuration["TOTP:Timeout"]!);
+        }
+        public void Count(string Email)
+        {
+            
+        }
+        public void Attempt(string Email)
+        {
+            
+        }
+}
+
+public class  TFAccess : Access
+{
+    private readonly string TFPrefix;
+
+    public TFAccess(IConfiguration Configuration, IConnectionMultiplexer Redis) : base(Configuration, Redis)
+    {
+        this.TFPrefix = Configuration["TOTP:TFPrefix"]!;
+    }
+    public async Task<long> Count(string Email)
+    {
+        var Count = await this.Redis.ListLengthAsync($"{this.TFPrefix}-{Email}");
+        return Count;
+    }
+    public void Attempt(string Email)
+    {
+        this.Redis.ListRightPushAsync($"{this.TFPrefix}-{Email}", $"");
+        this.Redis.KeyExpireAsync($"{this.TFPrefix}-{Email}", TimeSpan.FromMinutes(this.Timeout));
+    }
+}
+public class  SIAccess : Access
+{
+    private readonly string SIPrefix;
+    public SIAccess(IConfiguration Configuration, IConnectionMultiplexer Redis) : base(Configuration, Redis)
+    {
+        this.SIPrefix = Configuration["TOTP:SIPrefix"]!;
+    }
+    public async Task<long> Count(string Email)
+    {
+        var Count = await this.Redis.ListLengthAsync($"{this.SIPrefix}-{Email}");
+        return Count;
+    }
+    public void Attempt(string Email)
+    {
+        this.Redis.ListRightPushAsync($"{this.SIPrefix}-{Email}", $"");
+        this.Redis.KeyExpireAsync($"{this.SIPrefix}-{Email}", TimeSpan.FromHours(this.Timeout));
+    }
+
+    public  void Remove(string Email)
+    {
+        this.Redis.KeyDelete($"{this.SIPrefix}-{Email}");
     }
 }
 

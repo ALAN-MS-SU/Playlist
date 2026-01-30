@@ -9,11 +9,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Middleware/Auth.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Argon/Argon.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CaixaAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CaixaAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Playlist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Playlist.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/User/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/User/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +32,8 @@
     <setting file="file://$PROJECT_DIR$/Controllers/Playlist.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Controllers/User.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DB/DB.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Middleware/Auth.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Argon/Argon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/JWT/JWT.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/User/User.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
@@ -179,7 +183,13 @@
       <workItem from="1769461178156" duration="2329000" />
       <workItem from="1769465271421" duration="1609000" />
       <workItem from="1769549866864" duration="540000" />
-      <workItem from="1769550692638" duration="3277000" />
+      <workItem from="1769550692638" duration="5499000" />
+      <workItem from="1769563780969" duration="6968000" />
+      <workItem from="1769631613821" duration="245000" />
+      <workItem from="1769651418829" duration="2983000" />
+      <workItem from="1769720500029" duration="7724000" />
+      <workItem from="1769739179983" duration="3358000" />
+      <workItem from="1769803196327" duration="855000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -261,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769387219000</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add Totp limit">
+      <option name="closed" value="true" />
+      <created>1769554243821</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1769554243821</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +287,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add Create User" />
@@ -281,7 +310,8 @@
     <MESSAGE value="Add return JWT" />
     <MESSAGE value="Add Update playlist" />
     <MESSAGE value="Add delete Playlist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add delete Playlist" />
+    <MESSAGE value="Add Totp limit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Totp limit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
