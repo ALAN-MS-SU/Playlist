@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CaixaAPI.Controllers;
 
 [ApiController]
-[Route("/Password")]
+[Route("/User/Password")]
 public class PasswordController(
     Context Context,
     TOTP Totp,
@@ -24,7 +24,6 @@ public class PasswordController(
     private readonly Argon Argon = Argon;
     
     private readonly PAccess PAccess = PAccess;
-    
     
     private readonly  IConfiguration Configuration = Configuration;
 

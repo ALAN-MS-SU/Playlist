@@ -28,6 +28,7 @@ builder.Services.AddScoped<JWT>();
 builder.Services.AddScoped<TOTP>();
 builder.Services.AddScoped<TFAccess>();
 builder.Services.AddScoped<SIAccess>();
+builder.Services.AddScoped<PAccess>();
 builder.Services.AddDbContext<Context>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("Postgres") ??
@@ -44,7 +45,8 @@ app.UseWhen(
              !context.Request.Path.StartsWithSegments("/User/Profile")) &&
             (context.Request.Method == HttpMethods.Get ||
              context.Request.Method == HttpMethods.Post) 
-        ) && !(context.Request.Path.StartsWithSegments("/Playlist") && context.Request.Method == HttpMethods.Get),
+        ) && !(context.Request.Path.StartsWithSegments("/Playlist") && context.Request.Method == HttpMethods.Get) &&
+    !(context.Request.Path.StartsWithSegments("/User/Password")),
     appBuilder =>
     {
         appBuilder.UseMiddleware<Auth>();
