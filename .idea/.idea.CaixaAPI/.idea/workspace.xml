@@ -9,13 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Middleware/Auth.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Argon/Argon.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/Password.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/TOTP/Access/Access.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CaixaAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CaixaAPI.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/User/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/User/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +33,7 @@
     <setting file="file://$PROJECT_DIR$/Middleware/Auth.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/Argon/Argon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/JWT/JWT.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/TOTP/Access/Access.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/User/User.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -189,7 +188,11 @@
       <workItem from="1769651418829" duration="2983000" />
       <workItem from="1769720500029" duration="7724000" />
       <workItem from="1769739179983" duration="3358000" />
-      <workItem from="1769803196327" duration="855000" />
+      <workItem from="1769803196327" duration="886000" />
+      <workItem from="1770413345620" duration="694000" />
+      <workItem from="1770421094332" duration="945000" />
+      <workItem from="1771372437713" duration="2637000" />
+      <workItem from="1771423382500" duration="4827000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -279,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769554243821</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add Argon">
+      <option name="closed" value="true" />
+      <created>1769804070011</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1769804070011</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,7 +322,8 @@
     <MESSAGE value="Add Update playlist" />
     <MESSAGE value="Add delete Playlist" />
     <MESSAGE value="Add Totp limit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Totp limit" />
+    <MESSAGE value="Add Argon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Argon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -328,6 +340,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Controllers/Password.cs</url>
+          <line>53</line>
+          <properties documentPath="$PROJECT_DIR$/Controllers/Password.cs" containingFunctionPresentation="Method 'TwoFA'">
+            <startOffsets>
+              <option value="1934" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1935" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -4,6 +4,7 @@ using CaixaAPI.Model.TOTP;
 using CaixaAPI.Model.User;
 using CaixaAPI.Model.Argon;
 using Microsoft.AspNetCore.Mvc;
+using CaixaAPI.Model.TOTP.Access;
 using Microsoft.EntityFrameworkCore;
 namespace CaixaAPI.Controllers;
 
@@ -76,8 +77,7 @@ public class UserController(
         if (User.Secret == null) return StatusCode(403,"Secret not found.");
         var Count = await TFAccess.Count(Body.Email);
         if (Count >= int.Parse(Configuration["TOTP:Limit"]!)) return StatusCode(403,"Limit exceeded.");
-        var Open = (await SIAccess.Count(Body.Email)) > 0;
-        if(!Open) return StatusCode(403,"Credentials were not validated.");
+        if(Count < 1) return StatusCode(403,"Credentials were not validated.");
         TFAccess.Attempt(Body.Email);
         var Valid = Totp.Valid(User.Secret, Body.Code);
         if (Valid)
@@ -91,10 +91,9 @@ public class UserController(
         return Unauthorized("Invalid Code.");
     }
 
-    [HttpPost("SingIn")]
+    [HttpPost("SignIn")]
     public async Task<IActionResult> SignIn([FromBody] Credentials Body)
     {
-        Console.WriteLine(Body.Email);
         var User = await Context.Users.FirstOrDefaultAsync(user => user.Email == Body.Email);
         if (User == null) return Unauthorized("User Not Found.");
         var Count = await SIAccess.Count(Body.Email);
@@ -127,8 +126,9 @@ public class UserController(
         if (FindUser != null) return Unauthorized("Email is already in use.");
         if (Body.Name != null) user.Name = Body.Name;
         if (Body.Email != null) user.Email = Body.Email;
-        await Context.SaveChangesAsync();
-        return NoContent();
+        var Save = await Context.SaveChangesAsync();
+        if(Save > 0) return NoContent();
+        return BadRequest("Update user err.");
     }
 
     [HttpDelete("{ID}")]

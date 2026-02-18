@@ -3,6 +3,7 @@ using CaixaAPI.Model.JWT;
 using CaixaAPI.Model.TOTP;
 using Microsoft.EntityFrameworkCore;
 using CaixaAPI.Middleware;
+using CaixaAPI.Model.TOTP.Access;
 using CaixaAPI.Model.Argon;
 using StackExchange.Redis;
 var builder = WebApplication.CreateBuilder(args);
