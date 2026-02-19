@@ -58,6 +58,9 @@ public class UserController(
     {
         var User = await Context.Users.FirstOrDefaultAsync(user => user.Email == Email);
         if (User == null) return BadRequest("User Not Found.");
+        var Count = await SIAccess.Count(Email);
+        if (Count >= int.Parse(Configuration["TOTP:Limit"]!)) return StatusCode(403,"Limit exceeded.");
+        if(Count < 1) return StatusCode(403,"Credentials were not validated.");
         if (User.Secret == null)
         {
             var Secrets = Totp.CreateSecret();
@@ -77,6 +80,7 @@ public class UserController(
         if (User.Secret == null) return StatusCode(403,"Secret not found.");
         var Count = await TFAccess.Count(Body.Email);
         if (Count >= int.Parse(Configuration["TOTP:Limit"]!)) return StatusCode(403,"Limit exceeded.");
+        Count = await SIAccess.Count(Body.Email);
         if(Count < 1) return StatusCode(403,"Credentials were not validated.");
         TFAccess.Attempt(Body.Email);
         var Valid = Totp.Valid(User.Secret, Body.Code);

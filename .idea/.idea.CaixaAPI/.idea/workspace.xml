@@ -10,8 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Password.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Password.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +189,8 @@
       <workItem from="1770421094332" duration="945000" />
       <workItem from="1771372437713" duration="2637000" />
       <workItem from="1771423382500" duration="4852000" />
-      <workItem from="1771429791082" duration="1287000" />
+      <workItem from="1771429791082" duration="1918000" />
+      <workItem from="1771535671013" duration="3110000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -296,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771428228849</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix ChangePassword">
+      <option name="closed" value="true" />
+      <created>1771431102983</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1771431102983</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +338,8 @@
     <MESSAGE value="Add Totp limit" />
     <MESSAGE value="Add Argon" />
     <MESSAGE value="Add change password" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add change password" />
+    <MESSAGE value="fix ChangePassword" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix ChangePassword" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
