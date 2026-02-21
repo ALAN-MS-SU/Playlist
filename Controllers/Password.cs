@@ -35,7 +35,7 @@ public class PasswordController(
         if (User.Secret == null) return StatusCode(403,"Secret not found.");
         var Count = await PAccess.Count(Email,true);
         if (Count >= int.Parse(Configuration["TOTP:Limit"]!)) return StatusCode(403,"Limit exceeded.");
-        PAccess.Init(Email);
+        PAccess.Open(Email);
         return NoContent();
     }
     [HttpPost("2FA")]
@@ -66,6 +66,7 @@ public class PasswordController(
         var Hash = Argon.GenerateHash(Body.Password);
         User.Password = Hash;
         var Save = await Context.SaveChangesAsync();
+        PAccess.Remove(Body.Email);
         if (Save > 0) return NoContent();
         return BadRequest("Update Password Failed.");
     }

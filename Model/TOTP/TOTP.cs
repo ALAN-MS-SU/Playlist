@@ -28,7 +28,7 @@ public class TOTP
         return (Secret, Encrypt);
     }
 
-    public byte[] GenerateQRCode(string Email, string Secret, string Issuer)
+    public byte[] GenerateQRCode(string Email, string Secret)
     {
         var QRGenerator = new QRCodeGenerator();
         var QRData = QRGenerator.CreateQrCode

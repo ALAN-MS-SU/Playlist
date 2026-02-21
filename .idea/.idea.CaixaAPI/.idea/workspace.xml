@@ -10,7 +10,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Password.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Password.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/TOTP/Access/Access.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/Access/Access.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +53,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/foot/Downloads/playlist&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -190,7 +194,9 @@
       <workItem from="1771372437713" duration="2637000" />
       <workItem from="1771423382500" duration="4852000" />
       <workItem from="1771429791082" duration="1918000" />
-      <workItem from="1771535671013" duration="3110000" />
+      <workItem from="1771535671013" duration="3191000" />
+      <workItem from="1771539366384" duration="2538000" />
+      <workItem from="1771548276469" duration="2243000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -304,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771431102983</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update QRcode">
+      <option name="closed" value="true" />
+      <created>1771538887763</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771538887763</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +353,8 @@
     <MESSAGE value="Add Argon" />
     <MESSAGE value="Add change password" />
     <MESSAGE value="fix ChangePassword" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ChangePassword" />
+    <MESSAGE value="update QRcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="update QRcode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

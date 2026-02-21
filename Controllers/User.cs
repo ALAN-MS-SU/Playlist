@@ -53,13 +53,14 @@ public class UserController(
         return Ok(User);
     }
     
-    [HttpPost("QrCode/{Email}")]
+    [HttpGet("QrCode/{Email}")]
     public async Task<IActionResult> QRCode(string Email)
     {
         var User = await Context.Users.FirstOrDefaultAsync(user => user.Email == Email);
         if (User == null) return BadRequest("User Not Found.");
         var Count = await SIAccess.Count(Email);
         if (Count >= int.Parse(Configuration["TOTP:Limit"]!)) return StatusCode(403,"Limit exceeded.");
+        Count = await SIAccess.Count(Email, true);
         if(Count < 1) return StatusCode(403,"Credentials were not validated.");
         if (User.Secret == null)
         {
@@ -67,8 +68,7 @@ public class UserController(
             User.Secret = Secrets.Encrypt;
             await Context.SaveChangesAsync();
         }
-
-        var QRCode = Totp.GenerateQRCode(User.Email, User.Secret, Totp.Issuer);
+        var QRCode = Totp.GenerateQRCode(User.Email, User.Secret);
         return File(QRCode, "image/png");
     }
 
@@ -105,7 +105,7 @@ public class UserController(
         SIAccess.Attempt(Body.Email);
         if (Argon.Verify(User.Password, Body.Password))
         {
-            SIAccess.Attempt(Body.Email);
+            SIAccess.Open(Body.Email);
             return Accepted();
         }
         return Unauthorized("Invalid Password.");

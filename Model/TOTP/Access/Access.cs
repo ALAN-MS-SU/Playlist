@@ -19,7 +19,6 @@ public class Access
             
     }
 }
-
 public class  TFAccess : Access
 {
     private readonly string TFPrefix;
@@ -46,11 +45,18 @@ public class  SIAccess : Access
     {
         this.SIPrefix = Configuration["TOTP:SIPrefix"]!;
     }
-    public async Task<long> Count(string Email)
+    public async Task<long> Count(string Email,bool Open = false)
     {
-        var Count = await this.Redis.ListLengthAsync($"{this.SIPrefix}-{Email}");
+        var Count = await this.Redis.ListLengthAsync($"{(Open ? "Open-" :"")}{this.SIPrefix}-{Email}");
         return Count;
     }
+
+    public void Open(string Email)
+    {
+          this.Redis.ListRightPushAsync($"Open-{this.SIPrefix}-{Email}", $"");
+          this.Redis.KeyExpireAsync($"Open-{this.SIPrefix}-{Email}", TimeSpan.FromMinutes(this.Timeout));
+    }
+
     public void Attempt(string Email)
     {
         this.Redis.ListRightPushAsync($"{this.SIPrefix}-{Email}", $"");
@@ -59,7 +65,7 @@ public class  SIAccess : Access
 
     public void Remove(string Email)
     {
-        this.Redis.KeyDelete($"{this.SIPrefix}-{Email}");
+        this.Redis.KeyDelete($"Open-{this.SIPrefix}-{Email}");
     }
 }
 
@@ -70,16 +76,16 @@ public class PAccess : Access
     {
         this.PPrefix = Configuration["TOTP:PPrefix"]!;
     }
-    public async Task<long> Count(string Email, bool Init = false)
+    public async Task<long> Count(string Email, bool Open = false)
     {
-        var Count = await this.Redis.ListLengthAsync($"{(Init ? "Init-" :"")}{this.PPrefix}-{Email}");
+        var Count = await this.Redis.ListLengthAsync($"{(Open ? "Open-" :"")}{this.PPrefix}-{Email}");
         return Count;
     }
 
-    public void Init(string Email)
+    public void Open(string Email)
     {
-        this.Redis.ListRightPushAsync($"Init-{this.PPrefix}-{Email}", $"");
-        this.Redis.KeyExpireAsync($"Init-{this.PPrefix}-{Email}", TimeSpan.FromHours(this.Timeout));
+        this.Redis.ListRightPushAsync($"Open-{this.PPrefix}-{Email}", $"");
+        this.Redis.KeyExpireAsync($"Open-{this.PPrefix}-{Email}", TimeSpan.FromMinutes(this.Timeout));
     }
     public void Attempt(string Email)
     {
@@ -89,6 +95,6 @@ public class PAccess : Access
 
     public void Remove(string Email)
     {
-        this.Redis.KeyDelete($"{this.PPrefix}-{Email}");
+        this.Redis.KeyDelete($"Open-{this.PPrefix}-{Email}");
     }
 }
