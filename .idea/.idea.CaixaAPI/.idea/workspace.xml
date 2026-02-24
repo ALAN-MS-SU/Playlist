@@ -9,11 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Model/JWT/Cookie/Cookie.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Password.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Password.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CaixaAPI.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/CaixaAPI.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/TOTP/Access/Access.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/Access/Access.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TOTP/TOTP.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +26,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/82596738ee51b31456edad89786c6c6d05c13e1e53629fe4a308644b32d69/ControllerActionInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db7395f4add94e6d10e515b3e55373f2821f8323de7dc8e314d78feefacf5584/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dda589c042d6eac1f79a287bfa43d787b88bbba6877e62052d0b95dc422/CookieOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Controllers/Playlist.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Controllers/User.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DB/DB.cs" root0="FORCE_HIGHLIGHTING" />
@@ -197,6 +198,16 @@
       <workItem from="1771535671013" duration="3191000" />
       <workItem from="1771539366384" duration="2538000" />
       <workItem from="1771548276469" duration="2243000" />
+      <workItem from="1771636030703" duration="86000" />
+      <workItem from="1771765429815" duration="352000" />
+      <workItem from="1771791888617" duration="463000" />
+      <workItem from="1771792993858" duration="2912000" />
+      <workItem from="1771809300663" duration="19000" />
+      <workItem from="1771809408397" duration="2798000" />
+      <workItem from="1771863007846" duration="886000" />
+      <workItem from="1771871111960" duration="1018000" />
+      <workItem from="1771879230453" duration="4821000" />
+      <workItem from="1771894023026" duration="2479000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -318,7 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771538887763</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Update Access">
+      <option name="closed" value="true" />
+      <created>1771636097091</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771636097091</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +373,8 @@
     <MESSAGE value="Add change password" />
     <MESSAGE value="fix ChangePassword" />
     <MESSAGE value="update QRcode" />
-    <option name="LAST_COMMIT_MESSAGE" value="update QRcode" />
+    <MESSAGE value="Update Access" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Access" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

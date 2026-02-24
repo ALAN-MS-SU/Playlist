@@ -3,6 +3,7 @@ using CaixaAPI.Model.JWT;
 using CaixaAPI.Model.TOTP;
 using CaixaAPI.Model.User;
 using CaixaAPI.Model.Argon;
+using CaixaAPI.Model.JWT.Cookie;
 using Microsoft.AspNetCore.Mvc;
 using CaixaAPI.Model.TOTP.Access;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ public class UserController(
     Argon Argon,
     TFAccess TFAccess,
     SIAccess SIAccess,
+    Cookie CookieBuilder,
     IConfiguration Configuration
 ) : ControllerBase
 {
@@ -31,6 +33,8 @@ public class UserController(
     private readonly TFAccess TFAccess = TFAccess;
     
     private readonly SIAccess SIAccess = SIAccess;
+
+    private readonly Cookie CookieBuilder = CookieBuilder;
     
     private readonly  IConfiguration Configuration = Configuration;
     
@@ -80,7 +84,7 @@ public class UserController(
         if (User.Secret == null) return StatusCode(403,"Secret not found.");
         var Count = await TFAccess.Count(Body.Email);
         if (Count >= int.Parse(Configuration["TOTP:Limit"]!)) return StatusCode(403,"Limit exceeded.");
-        Count = await SIAccess.Count(Body.Email);
+        Count = await SIAccess.Count(Body.Email, true);
         if(Count < 1) return StatusCode(403,"Credentials were not validated.");
         TFAccess.Attempt(Body.Email);
         var Valid = Totp.Valid(User.Secret, Body.Code);
@@ -90,7 +94,9 @@ public class UserController(
             var JWT = Jwt.CreateJWT(User.ID);
             if (JWT == null)
                 return Unauthorized("JWT Err.");
-            return Ok(new { JWT });
+            var Config = CookieBuilder.GetConfig();
+            Response.Cookies.Append(Configuration["JWT:Name"]!,JWT,Config);
+            return Accepted();
         }
         return Unauthorized("Invalid Code.");
     }

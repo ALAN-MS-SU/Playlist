@@ -37,6 +37,21 @@ builder.Services.AddDbContext<Context>(options =>
 );
 
 builder.Services.AddOpenApi();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Front", policy =>
+    {
+        policy.WithOrigins(builder.Configuration["Cors:Front"]!)
+            .AllowAnyHeader()
+            .WithMethods("GET", "POST", "PUT", "DELETE", "PATCH")
+            .AllowCredentials();
+
+    });
+});
+
+
+
 var app = builder.Build();
 app.UseWhen(
     context =>
@@ -52,6 +67,7 @@ app.UseWhen(
         appBuilder.UseMiddleware<Auth>();
     }
 );
+app.UseCors("AllowFrontend");
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 app.MapControllers();
 app.UseHttpsRedirection();
