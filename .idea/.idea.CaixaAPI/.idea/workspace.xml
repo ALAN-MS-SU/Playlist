@@ -10,12 +10,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dbefaf53-d32d-4dfe-b34d-020128e667cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CaixaAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Playlist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Playlist.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Playlist.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/DB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DB/DB.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Middleware/Auth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Middleware/Auth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/JWT/Cookie/Cookie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/JWT/Cookie/Cookie.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Playlist/Playlist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Playlist/Playlist.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +215,9 @@
       <workItem from="1772033215487" duration="37000" />
       <workItem from="1772206255458" duration="373000" />
       <workItem from="1772233158358" duration="829000" />
-      <workItem from="1772241210415" duration="2606000" />
+      <workItem from="1772241210415" duration="3456000" />
+      <workItem from="1772298421502" duration="633000" />
+      <workItem from="1772310666507" duration="1538000" />
     </task>
     <task id="LOCAL-00001" summary="Add Create User">
       <option name="closed" value="true" />
@@ -363,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771897092760</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Update middleware">
+      <option name="closed" value="true" />
+      <created>1772243833212</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1772243833212</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +410,8 @@
     <MESSAGE value="Update Access" />
     <MESSAGE value="Add cookie config" />
     <MESSAGE value="Add cookie service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add cookie service" />
+    <MESSAGE value="Update middleware" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update middleware" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

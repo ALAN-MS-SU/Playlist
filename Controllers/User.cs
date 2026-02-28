@@ -37,6 +37,15 @@ public class UserController(
     private readonly Cookie CookieBuilder = CookieBuilder;
     
     private readonly  IConfiguration Configuration = Configuration;
+
+    [HttpHead]
+
+    public IActionResult SignOut()
+    {
+        var Config = CookieBuilder.GetConfig();
+        Response.Cookies.Delete(Configuration["JWT:Name"]!,Config);
+        return  NoContent();
+    }
     
     [HttpGet("{Email}")]
     public async Task<IActionResult> Get(string Email)

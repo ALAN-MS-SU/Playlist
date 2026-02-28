@@ -14,21 +14,21 @@ public class Auth
 
     public async Task InvokeAsync(HttpContext context)
     {
-
-      
         var Token = context.Request.Cookies[this.Config["JWT:Name"]!];
         if (Token != null)
         {
              var Handler = new JwtSecurityTokenHandler();
              var JWT = Handler.ReadJwtToken(Token);
-             var Sub = JWT.Claims.First(claim => claim.Type == "sub").Value;
-             var ID = context.Request.RouteValues["ID"]!.ToString();
-             Console.WriteLine(Sub,ID);
-             if (ID != Sub)
+             if (context.Request.Method == "GET")
              {
-                 context.Response.StatusCode = 403;
-                 await context.Response.WriteAsync("No auth.");
-                 return;
+                 var Sub = JWT.Claims.First(claim => claim.Type == "sub").Value;
+                 var ID = context.Request.RouteValues["ID"]!.ToString();
+                 if (ID != Sub)
+                 {
+                     context.Response.StatusCode = 403;
+                     await context.Response.WriteAsync("No auth.");
+                     return;
+                 }
              }
              await Next(context);
              return;

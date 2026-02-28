@@ -46,7 +46,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(builder.Configuration["Cors:Front"]!)
             .AllowAnyHeader()
-            .WithMethods("GET", "POST", "PUT", "DELETE", "PATCH")
+            .WithMethods("GET", "POST", "DELETE", "HEAD")
             .AllowCredentials();
 
     });
