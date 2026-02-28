@@ -10,7 +10,7 @@ public class Cookie
     }
     public CookieOptions GetConfig()
     {
-        var expires = DateTime.UtcNow.AddMinutes(
+        var expires = DateTime.UtcNow.AddDays(
             double.Parse(Configuration["JWT:Expires"]!)
         );
         return new CookieOptions

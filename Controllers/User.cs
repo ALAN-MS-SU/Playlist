@@ -127,19 +127,19 @@ public class UserController(
         if (Row > 0) return StatusCode(201, "User was been created.");
         return BadRequest("Create user err.");
     }
-    [HttpPut]
-    public async Task<IActionResult> Put([FromBody] UpdateUser Body)
-    {
-        var user = await Context.Users.FindAsync(Body.ID);
-        if (user == null) return Unauthorized("User not found.");
-        var FindUser = await Context.Users.FirstOrDefaultAsync(User => User.Email == Body.Email);
-        if (FindUser != null) return Unauthorized("Email is already in use.");
-        if (Body.Name != null) user.Name = Body.Name;
-        if (Body.Email != null) user.Email = Body.Email;
-        var Save = await Context.SaveChangesAsync();
-        if(Save > 0) return NoContent();
-        return BadRequest("Update user err.");
-    }
+    // [HttpPut]
+    // public async Task<IActionResult> Put([FromBody] UpdateUser Body)
+    // {
+    //     var user = await Context.Users.FindAsync(Body.ID);
+    //     if (user == null) return Unauthorized("User not found.");
+    //     var FindUser = await Context.Users.FirstOrDefaultAsync(User => User.Email == Body.Email);
+    //     if (FindUser != null) return Unauthorized("Email is already in use.");
+    //     if (Body.Name != null) user.Name = Body.Name;
+    //     if (Body.Email != null) user.Email = Body.Email;
+    //     var Save = await Context.SaveChangesAsync();
+    //     if(Save > 0) return NoContent();
+    //     return BadRequest("Update user err.");
+    // }
 
     [HttpDelete("{ID}")]
     public async Task<IActionResult> Delete(int ID)

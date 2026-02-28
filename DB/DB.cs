@@ -1,4 +1,4 @@
-using CaixaAPI.Model.Playlist;
+//using CaixaAPI.Model.Playlist;
 using CaixaAPI.Model.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,5 +13,5 @@ public class Context : DbContext
 
     public DbSet<User> Users { get; set; }
 
-    public DbSet<Playlist> Playlists { get; set; }
+ //   public DbSet<Playlist> Playlists { get; set; }
 }
